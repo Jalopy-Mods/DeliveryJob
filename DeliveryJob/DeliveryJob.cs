@@ -19,12 +19,12 @@ namespace DeliveryJob
         public override string ModName => "Delivery Job";
         public override string ModAuthor => "Leaxx";
         public override string ModDescription => "Adds a fun side activity involving picking up & dropping off boxes to various houses in other cities!";
-        public override string ModVersion => "1.2";
+        public override string ModVersion => "1.3";
         public override string GitHubLink => "https://github.com/Jalopy-Mods/DeliveryJob";
-        public override WhenToInit WhenToInit => WhenToInit.InGame;
+        public override JaLoader.Common.WhenToInit WhenToInitMod => JaLoader.Common.WhenToInit.InGame;
         public override List<(string, string, string)> Dependencies => new List<(string, string, string)>()
         {
-            ("JaLoader", "Leaxx", "3.5.0")
+            ("JaLoader", "Leaxx", "5.0.0")
         };
 
         public override bool UseAssets => true;
@@ -60,9 +60,10 @@ namespace DeliveryJob
                 saveData.Clear();
             };
 
+            EventsManager.Instance.OnFinishedAddingGameExtensions += AddBoxesToCustomObjectsManager;
+
             PrePopulateDictionary();
         }
-
         private void PrePopulateDictionary()
         {
             for (int i = 1; i <= 28; i++)
@@ -484,6 +485,7 @@ namespace DeliveryJob
             //box.transform.Find("Opener").gameObject.SetActive(false);
             var data = box.GetComponent<DeliveryBoxData>();
             var info = box.GetComponent<CustomObjectInfo>();
+            var ob = box.GetComponent<ObjectPickupC>();
             //info.objRegistryName = "DeliveryBox";
             //info.objName = "Delivery Box";
 
@@ -555,6 +557,8 @@ namespace DeliveryJob
             data.city = city;
 
             string location = ConvertHouseNumberToName(i);
+            ob.flavourText = $"MOD_A package that needs to be delivered to:\n\n- {city}\n- {location}\n\n- Paycheck: {payCheck}";
+            ob.componentHeader = $"MOD_Delivery Box";
             info.objDescription = $"A package that needs to be delivered to:\n\n- {city}\n- {location}\n\n- Paycheck: {payCheck}";
             box.SetActive(true);
         }
@@ -638,8 +642,6 @@ namespace DeliveryJob
         public override void OnEnable()
         {
             base.OnEnable();
-
-            AddBoxesToCustomObjectsManager();
         }
 
         public override void Awake()
