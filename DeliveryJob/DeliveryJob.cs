@@ -24,7 +24,7 @@ namespace DeliveryJob
         public override JaLoader.Common.WhenToInit WhenToInitMod => JaLoader.Common.WhenToInit.InGame;
         public override List<(string, string, string)> Dependencies => new List<(string, string, string)>()
         {
-            ("JaLoader", "Leaxx", "5.0.0")
+            ("JaLoader", "Leaxx", "5.1.1")
         };
 
         public override bool UseAssets => true;
