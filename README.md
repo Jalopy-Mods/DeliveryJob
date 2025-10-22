@@ -10,7 +10,7 @@ The possible destinations in each city are the motel reception, every motel room
 Boxes can only be picked up and delivered **BEFORE** sleeping in motels.
 
 ### How to install
-1. Make sure you have [JaLoader](https://github.com/theLeaxx/JaLoader) 3.5.0+ installed
+1. Make sure you have [JaLoader](https://github.com/theLeaxx/JaLoader) 5.1.1+ installed
 ### Manual method: Place it in your mods folder (default is `Documents/Jalopy/Mods`)
 ### Automatic method: 
 * **This requires that the `Enable JaDownloader` setting in `Modloader Options/Preferences` in-game is set to `Yes`**
